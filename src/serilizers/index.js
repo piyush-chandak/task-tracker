@@ -1,0 +1,1 @@
+module.exports.taskSerilizer = require('./task.serilizer');

@@ -1,0 +1,66 @@
+components:
+  schemas:
+    Task:
+      type: object
+      properties:
+        id:
+          type: number
+        title:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum: [open, inprocess, completed]
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      example:
+        id: 1
+        title: abcd
+        description: fake description
+        status: inprocess
+        created_at: 2023-09-25T13:47:50.123Z
+        updated_at: 2023-09-25T13:47:50.123Z
+
+    Error:
+      type: object
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+        stack:
+          type: string
+
+  responses:
+    InternalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 500
+            message: Internal Server Error
+
+    NotFoundError:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 404
+            message: Not found
+    
+    ValidationError:
+      description: Validation Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 400
+            message: Validation Error
